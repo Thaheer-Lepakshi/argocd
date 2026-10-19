@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: thaheeroutis/nginx-argocd:v.1.0.1
+        image: thaheeroutis/nginx-argocd:v.1.0.2
         resources:
           limits:
             memory: "128Mi"
