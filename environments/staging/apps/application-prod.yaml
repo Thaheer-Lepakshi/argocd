@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app-prod
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL:  "https://github.com/Thaheer-Lepakshi/argocd.git"
+    targetRevision: HEAD
+    path: environments/staging/my-app-prod
+  destination:
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+     - validate=true
+     - CreateNamespace=true
+     - PrunePropagationPolicy=foreground
+     - PruneLast=true
+
+    
